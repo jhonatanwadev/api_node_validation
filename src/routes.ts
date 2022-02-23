@@ -1,6 +1,7 @@
 import { Router, Request, Response } from 'express';
 import FormatController from './Controllers/FormatController';
 import ValidateController from './Controllers/ValidateController';
+import servicesBirthDate from './Services/servicesBirthDate';
 
 const router = Router();
 
@@ -30,6 +31,7 @@ router.get('/', (req: Request, res: Response) => {
 router.post('/validate/name', ValidateController.name);
 router.post('/validate/cpf', ValidateController.cpf);
 router.post('/validate/email', ValidateController.email);
+router.post('/validate/birthDate', ValidateController.birthDate);
 
 
 router.post('/format/cpf', FormatController.cpf);
