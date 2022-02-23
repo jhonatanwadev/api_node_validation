@@ -27,11 +27,21 @@ class ServicesCPF {
         let rest;
         sum = 0;
 
-        // Verificação basica se o cpfUser é zerado
-        if (cpfUser == "00000000000") {
-            return response;
-        }
+        // Verificação basica se o cpfUser é zerado ou tem um CPF inválido conhecido
+        if (cpfUser.length != 11 ||
+            cpfUser == "00000000000" || 
+            cpfUser == "11111111111" || 
+            cpfUser == "22222222222" || 
+            cpfUser == "33333333333" || 
+            cpfUser == "44444444444" || 
+            cpfUser == "55555555555" || 
+            cpfUser == "66666666666" || 
+            cpfUser == "77777777777" || 
+            cpfUser == "88888888888" || 
+            cpfUser == "99999999999")
+            return response;       
 
+        // Ínicio do CPF 524
         // Captura os caracteres da posição 1 até 9
         // Multiplica o caractere da posição 1 até 9 de 10 até 2 Ex( 5 x 10, 2 x 9, 4 x 8... Caractere do cpfUser x até o 2  )
         // Conforme ele captura e multiplica ele já faz a soma total dos resultados
@@ -46,6 +56,7 @@ class ServicesCPF {
             return response;
         }
 
+        // Ínicio do CPF 524
         // Captura os caracteres da posição 1 até 10
         // Multiplica o caractere da posição 1 até 10 de 11 até 2 Ex( 5 x 12, 2 x 11, 4 x 10... Caractere do cpfUser x até o 2  )
         // Conforme ele captura e multiplica ele já faz a soma total dos resultados
