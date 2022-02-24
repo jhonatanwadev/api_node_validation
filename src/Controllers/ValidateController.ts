@@ -37,10 +37,14 @@ class ValidateController {
 
     birthDate(req: Request, res: Response){
 
-        //Range Max de idade permitido e Range Min de idade permitida, caso não tenha nenhum range enviar valor NULL
-        const { birthDateDay, birthDateMonth, birthDateDaYear, rangeMax, rangeMin } = req.body;
+        //Range Max de idade permitido e Range Min de idade permitida, caso não tenha nenhum range enviar valor 0
+        const { birthDateDay, birthDateMonth, birthDateYear, rangeMax, rangeMin } = req.body;
 
-        const response = servicesBirthDate.validatebirthDate(birthDateDay, birthDateMonth, birthDateDaYear, rangeMax, rangeMin);
+        // let arrBirthDate = Array(birthDateDay, birthDateMonth, birthDateYear);
+        
+        if(birthDateDay == null || birthDateMonth == null || birthDateYear == null || birthDateDay == 0 || birthDateMonth == 0 || birthDateYear == 0) return res.json({'message': 'isInvalid'})
+
+        const response = servicesBirthDate.validatebirthDate(birthDateDay, birthDateMonth, birthDateYear, rangeMax ?? 0, rangeMin ?? 0);
 
         return res.json(response);
 
